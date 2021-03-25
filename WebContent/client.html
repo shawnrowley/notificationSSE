@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SSE Broadcast</title>
+
+        <style>
+            .created {color: green}
+            .uniqueId {color: red}
+            .message {color: black}
+        </style>
+    </head>
+
+    <body>
+    
+        <form>
+			<span id="result"></span>
+		</form>
+
+    	<script type="text/javascript">
+    		if(typeof(EventSource) !== "undefined") {
+        		source = new EventSource("http://localhost:8080/NotificationSSEMgr/rest/notification/eventStream");
+        		source.onmessage = function(event) {
+            		document.getElementById("result").innerHTML = event.data; // + "<br>";
+        		};
+    		} else {
+        		document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";
+    		}
+		</script>
+ 
+
+        <h1>SSE sample</h1>
+
+       <!--   <div id="result"></div>  -->
+	</body>
+</html>
